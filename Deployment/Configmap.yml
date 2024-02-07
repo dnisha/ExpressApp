@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: express-properties
+data:
+    API: "http://dnishad.com/api/v1"
+    TOKEN: "0123@3"

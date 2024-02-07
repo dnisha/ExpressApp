@@ -1,0 +1,21 @@
+{
+  "name": "express-prometheus-server",
+  "version": "1.0.0",
+  "description": "Basic Express server with Prometheus client",
+  "main": "server.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [
+    "express",
+    "prometheus",
+    "metrics"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.1",
+    "express": "^4.17.1",
+    "prom-client": "^12.0.0"
+  }
+}
