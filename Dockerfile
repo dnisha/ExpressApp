@@ -1,15 +1,20 @@
-
 FROM node:18.15.0-alpine AS builder
 WORKDIR /app
-COPY *.js /app
-COPY package.json /app
+
+# Copy package descriptors first to leverage Docker layer caching
+COPY package.json package-lock.json* ./
 RUN npm install --production
 
-#second stage
-#FROM gcr.io/distroless/nodejs18-debian11
+# Copy application source files
+COPY *.js ./
+
+# Second stage: runtime environment
 FROM node:18.15.0-alpine
 WORKDIR /app
-COPY --from=builder /app /app
-USER root
-# EXPOSE 8080
-CMD ["app.js"]
+
+# Copy built app and dependencies from builder stage
+COPY --from=builder /app ./
+
+# Explicitly use node to execute app.js
+EXPOSE 8080
+CMD ["node", "app.js"]
